@@ -1,0 +1,3 @@
+samples: "samples.tsv"
+batch: "setABC_20250819_lane2"
+index: "lane2_std_20250819_setABC.csv"
