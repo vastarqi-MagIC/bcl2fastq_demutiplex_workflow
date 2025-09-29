@@ -53,20 +53,15 @@ conda activate demux_qc
 
 1. 使用 Illumina Experiment Manager 生成 `SampleSheet.csv`。  
 2. 运行 `bcl2fastq`（或 `bcl-convert` 也可自行适配），例如：
-      ```bash
-   nohup bcl2fastq \
-     -i /PATH/Run/Data/Intensities/BaseCalls \
-     -R /PATH/Run \
-     -o /PATH/fastq_output \
-     --sample-sheet /PATH/SampleSheet.csv  > demultiplex.log 2>&1 &
-   ```
+
    ```bash
-   nohup bcl2fastq \
-     -i /PATH/Run/Data/Intensities/BaseCalls \
-     -R /PATH/Run \
-     -o /PATH/fastq_output \
-     --sample-sheet /PATH/SampleSheet.csv \
-     --tiles s_2 > demultiplex.log 2>&1 &
+    nohup bcl2fastq \
+      -R /PATH/Run \
+      -o /PATH/fastq_output \
+      --sample-sheet /PATH/SampleSheet.csv \
+      --no-lane-splitting > demultiplex.log 2>&1 &
+   
+
    ```
 4. 使用脚本 `scripts_make_samples_tsv.sh`（自行编辑其中 `FASTQ_DIR`）生成 `samples.tsv`：
    ```bash
