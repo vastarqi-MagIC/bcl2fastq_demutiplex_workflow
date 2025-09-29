@@ -60,8 +60,30 @@ conda activate demux_qc
       -o /PATH/fastq_output \
       --sample-sheet /PATH/SampleSheet.csv \
       --no-lane-splitting > demultiplex.log 2>&1 &
-   
-
+   ```
+   -----------------------------------------
+   或者在lurm上使用这个脚本run_bcl2fastq.slurm：
+   ```bash
+    #!/bin/bash
+    #SBATCH --job-name=bcl2fastq
+    #SBATCH --output=demultiplex.log
+    #SBATCH --error=demultiplex.err
+    #SBATCH --time=12:00:00
+    #SBATCH --cpus-per-task=8
+    #SBATCH --mem=32G
+    
+    # Load bcl2fastq module if needed
+    # module load bcl2fastq/2.20.0
+    
+    # Run bcl2fastq
+    bcl2fastq \
+      -R /PATH/Run \
+      -o /PATH/fastq_output \
+      --sample-sheet /PATH/SampleSheet.csv \
+   ```
+   然后
+   ```bash
+   sbatch run_bcl2fastq.slurm
    ```
 4. 使用脚本 `scripts_make_samples_tsv.sh`（自行编辑其中 `FASTQ_DIR`）生成 `samples.tsv`：
    ```bash
